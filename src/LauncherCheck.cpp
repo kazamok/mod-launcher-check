@@ -45,18 +45,18 @@ private:
 
         if (!std::filesystem::exists(configFilePath))
         {
-            LOG_WARN("module", "[Launcher Check] Configuration file {} not found. Using default settings.", configFilePath);
+            LOG_WARN("module", "[Launcher Check] 구성 파일 {}을(를) 찾을 수 없어 기본 설정을 사용합니다.", configFilePath);
             return;
         }
 
         std::ifstream configFile(configFilePath);
         if (!configFile.is_open())
         {
-            LOG_ERROR("module", "[Launcher Check] Could not open configuration file {}. Using default settings.", configFilePath);
+            LOG_ERROR("module", "[Launcher Check] 구성 파일 {}을(를) 열 수 없어 기본 설정을 사용하고 있습니다.", configFilePath);
             return;
         }
 
-        LOG_INFO("module", "[Launcher Check] Loading configuration from {}.", configFilePath);
+        LOG_INFO("module", "[Launcher Check] {}에서 설정값을 로드합니다.", configFilePath);
         std::string line;
         while (std::getline(configFile, line))
         {
@@ -110,7 +110,7 @@ private:
                             }
                             catch (const std::exception& e)
                             {
-                                LOG_ERROR("module", "[Launcher Check] Invalid account ID '{}' in whitelist: {}.", item, e.what());
+                                LOG_ERROR("module", "[Launcher Check] 허용 목록에 잘못된 계정 ID '{}'이 있습니다: {}.", item, e.what());
                             }
                         }
                     }
@@ -118,7 +118,7 @@ private:
             }
         }
         configFile.close();
-        LOG_INFO("module", "[Launcher Check] Loaded {} whitelisted accounts.", g_WhitelistedAccounts.size());
+        LOG_INFO("module", "[Launcher Check] 허용 목록에 있는 {}개의 계정을 로드했습니다.", g_WhitelistedAccounts.size());
     }
 
 public:
@@ -152,13 +152,13 @@ public:
         if (g_WhitelistedAccounts.count(accountId))
         {
             needsKick = false;
-            LOG_INFO("module", "[Launcher Check] Whitelisted Account {} bypassed launcher check.", accountId);
+            LOG_INFO("module", "[Launcher Check] 허용된 계정 {}이 런처 검사를 통과했습니다.", accountId);
         }
         // 2. GM bypass check
                 else if (g_BypassForGMsEnabled && AccountMgr::GetSecurity(accountId, 0) >= g_GMLevelBypass)
         {
             needsKick = false;
-            LOG_INFO("module", "[Launcher Check] GM Account {} (Security Level: {}) bypassed launcher check.", accountId, AccountMgr::GetSecurity(accountId, 0));
+            LOG_INFO("module", "[Launcher Check] GM 계정 {} (보안 레벨: {})이 런처 검사를 통과했습니다.", accountId, AccountMgr::GetSecurity(accountId, 0));
         }
         // 3. Launcher status check from DB
         else
@@ -172,16 +172,16 @@ public:
                 {
                     needsKick = false;
                     LoginDatabase.Execute("UPDATE account SET online = 1 WHERE id = {}", accountId);
-                    LOG_INFO("module", "[Launcher Check] Account {} verified via launcher.", accountId);
+                    LOG_INFO("module", "[Launcher Check] 계정 {}이 런처를 사용한 것으로 확인되었습니다.", accountId);
                 }
                 else
                 {
-                    LOG_INFO("module", "[Launcher Check] Account {} did not use launcher (status: {}).", accountId, fields[0].Get<uint32>());
+                    LOG_INFO("module", "[Launcher Check] 계정 {}은 런처를 사용하지않은 것으로 확인되었습니다.(상태: {}).", accountId, fields[0].Get<uint32>());
                 }
             }
             else
             {
-                LOG_WARN("module", "[Launcher Check] DB query failed for account {}. Could not verify launcher status.", accountId);
+                LOG_WARN("module", "[Launcher Check] 계정{}에 대한 DB 쿼리가 실패했습니다. 런처 상태를 확인할 수 없습니다.", accountId);
             }
         }
 
@@ -222,7 +222,7 @@ public:
         if (shouldKick)
         {
             LOG_INFO("module", "[Launcher Check] Player {} (Account: {}) is scheduled for kick in 30 seconds for not using the launcher.", player->GetName(), accountId);
-            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[System] 경고: 공식 런처를 통해 접속해야 합니다. 30초 후 연결이 해제됩니다.|r");
+            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[System] 경고: 공식 런처를 이용해 접속해야 합니다. 30초 후 연결이 해제됩니다.|r");
 
             std::lock_guard<std::mutex> lock(pendingKicksMutex);
             pendingKicks[player->GetGUID()] = time(nullptr) + 30;
@@ -234,7 +234,7 @@ public:
 
             if (!wasBypassed)
             {
-                 ChatHandler(player->GetSession()).PSendSysMessage("|cff00ff00[System] 환영합니다! 런처 연결이 확인되었습니다.|r");
+                 ChatHandler(player->GetSession()).PSendSysMessage("|cff00ff00[System] 환영합니다! 런처를 이용한 접속으로 확인되었습니다.|r");
             }
         }
     }
