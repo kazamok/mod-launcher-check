@@ -1,25 +1,45 @@
 #
-# mod-launcher-check configuration file
+###################################################################################################
+#      ____   ___   _     _  ____   _________  __ _____ ____ 
+#     / ___| / _ \ | |   | |/ ___|  |_   _| \/ / | ____|  _ \
+#    | |  _ | | | || |   | | |  _     | |   \  / |  _| | |_) |
+#    | |_| || |_| || |___| | |_| |    | |   /  \ | |___|  _ < 
+#     \____| \___/ |_____|_|\____|    |_|  /_/\_\|_____|_| \_\
 #
+#   Launcher Check module
+#
+###################################################################################################
 
 [worldserver]
 
+###################################################################################################
+#
+#    런처 추적기 - 모듈 활성화 및 시작 메시지 설정
+#        Description: 런처로 접속 추적과 설정
+#        Author:      Kazamok, AzerothCore Community
+#
+###################################################################################################
+
+#
 # mod-launcher-check.Enabled
 #    Description: Enable or disable the launcher check module.
 #    Default:     1 (true)
 mod-launcher-check.Enabled = 1
 
+#
 # mod-launcher-check.BypassForGMsEnabled
 #    Description: Enable or disable the launcher check bypass for Game Masters.
 #    Default:     0 (false)
 mod-launcher-check.BypassForGMsEnabled = 0
 
+#
 # mod-launcher-check.GMLevelBypass
 #    Description: Minimum GM level (e.g. 3 for Administrator) to bypass the launcher check.
 #                 This setting is only active if BypassForGMsEnabled is true.
 #    Default:     3
 mod-launcher-check.GMLevelBypass = 3
 
+#
 # mod-launcher-check.Whitelist
 #    Description: A comma-separated list of account IDs to bypass the launcher check.
 #                 Useful for specific user accounts that cannot use the launcher.
