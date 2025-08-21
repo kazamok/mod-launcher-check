@@ -1,0 +1,28 @@
+#
+# mod-launcher-check configuration file
+#
+
+[worldserver]
+
+# mod-launcher-check.Enabled
+#    Description: Enable or disable the launcher check module.
+#    Default:     1 (true)
+mod-launcher-check.Enabled = 1
+
+# mod-launcher-check.BypassForGMsEnabled
+#    Description: Enable or disable the launcher check bypass for Game Masters.
+#    Default:     0 (false)
+mod-launcher-check.BypassForGMsEnabled = 0
+
+# mod-launcher-check.GMLevelBypass
+#    Description: Minimum GM level (e.g. 3 for Administrator) to bypass the launcher check.
+#                 This setting is only active if BypassForGMsEnabled is true.
+#    Default:     3
+mod-launcher-check.GMLevelBypass = 3
+
+# mod-launcher-check.Whitelist
+#    Description: A comma-separated list of account IDs to bypass the launcher check.
+#                 Useful for specific user accounts that cannot use the launcher.
+#    Example:     "10, 15, 42"
+#    Default:     "" (empty)
+mod-launcher-check.Whitelist = ""
