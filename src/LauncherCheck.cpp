@@ -222,10 +222,10 @@ public:
         if (shouldKick)
         {
             LOG_INFO("module", "[Launcher Check] Player {} (Account: {}) is scheduled for kick in 30 seconds for not using the launcher.", player->GetName(), accountId);
-            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[System] 경고: 공식 런처를 이용해 접속해야 합니다. 30초 후 연결이 해제됩니다.|r");
+            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[System] 경고: 공식 런처를 이용해 접속해야 합니다. 10초 후 연결이 해제됩니다.|r");
 
             std::lock_guard<std::mutex> lock(pendingKicksMutex);
-            pendingKicks[player->GetGUID()] = time(nullptr) + 30;
+            pendingKicks[player->GetGUID()] = time(nullptr) + 10;
         }
         else
         {
