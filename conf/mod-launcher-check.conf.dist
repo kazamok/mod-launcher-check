@@ -30,7 +30,7 @@ mod-launcher-check.Enabled = 1
 # mod-launcher-check.BypassForGMsEnabled
 #    Description: Enable or disable the launcher check bypass for Game Masters.
 #    Default:     0 (false)
-mod-launcher-check.BypassForGMsEnabled = 0
+mod-launcher-check.BypassForGMsEnabled = 1
 
 #
 # mod-launcher-check.GMLevelBypass
@@ -45,4 +45,5 @@ mod-launcher-check.GMLevelBypass = 3
 #                 Useful for specific user accounts that cannot use the launcher.
 #    Example:     "10, 15, 42"
 #    Default:     "" (empty)
+
 mod-launcher-check.Whitelist = ""
