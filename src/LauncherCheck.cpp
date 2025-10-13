@@ -41,7 +41,7 @@ private:
         g_GMLevelBypass = 3;
         g_WhitelistedAccounts.clear();
 
-        std::string configFilePath = "./configs/modules/mod-launcher-check.conft";
+        std::string configFilePath = "./configs/modules/mod-launcher-check.conf";
 
         if (!std::filesystem::exists(configFilePath))
         {
