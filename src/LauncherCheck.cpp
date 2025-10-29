@@ -222,10 +222,10 @@ public:
         if (shouldKick)
         {
             LOG_INFO("module", "[Launcher Check] Player {} (Account: {}) is scheduled for kick in 30 seconds for not using the launcher.", player->GetName(), accountId);
-            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[System] 경고: 공식 런처를 이용해 접속해야 합니다. 잠시 뒤 연결이 해제됩니다.|r");
+            ChatHandler(player->GetSession()).PSendSysMessage("|cffff0000[시스템] 경고: 공식 런처를 이용해 접속해야 합니다. 잠시 뒤 연결이 해제됩니다.|r");
 
             std::lock_guard<std::mutex> lock(pendingKicksMutex);
-            pendingKicks[player->GetGUID()] = time(nullptr) + 25;
+            pendingKicks[player->GetGUID()] = time(nullptr) + 15;
         }
         else
         {
@@ -234,7 +234,7 @@ public:
 
             if (!wasBypassed)
             {
-                 ChatHandler(player->GetSession()).PSendSysMessage("|cff00ff00[System] 환영합니다! 런처를 이용한 접속으로 확인되었습니다.|r");
+                 ChatHandler(player->GetSession()).PSendSysMessage("|cff00ff00[시스템] 환영합니다! 런처를 이용한 접속으로 확인되었습니다.|r");
             }
         }
     }
